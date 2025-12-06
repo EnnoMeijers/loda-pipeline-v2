@@ -1,0 +1,34 @@
+services:
+    map:
+        image: ghcr.io/netwerk-digitaal-erfgoed/ld-workbench:latest
+        volumes: 
+            - ./${DATASET}/ld-workbench:/pipelines
+        entrypoint: []
+        network_mode: "host"
+
+    fuseki:
+        image: fuseki
+        build:
+            context: ../jena-fuseki-docker-5.6.0
+            dockerfile: Dockerfile
+            args:
+            - JENA_VERSION=5.6.0
+        command: '--config=/fuseki/data/config.ttl'
+        ports:
+            - "3030:3030"
+        volumes:
+            - ./${DATASET}/fuseki:/fuseki/data
+            - ./${DATASET}/fuseki/logs:/fuseki/logs
+
+    europeana-tools:
+        build: ../europeana-tools
+        user: $USER
+        volumes:
+              - ./${DATASET}:/opt/data
+              - ./generic:/opt/shapes
+
+    s3cmd:
+        image: d3fk/s3cmd
+        volumes:
+              - ./${DATASET}:/s3
+              - .s3:/root

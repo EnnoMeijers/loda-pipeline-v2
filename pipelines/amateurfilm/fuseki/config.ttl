@@ -1,0 +1,31 @@
+PREFIX fuseki:  <http://jena.apache.org/fuseki#>
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX ja:      <http://jena.hpl.hp.com/2005/11/Assembler#>
+PREFIX :        <#>
+
+[] rdf:type fuseki:Server ;
+   fuseki:services (
+     <service1>
+   ) .
+
+## Updatable in-memory dataset.
+<service1> rdf:type fuseki:Service ;
+    fuseki:name   "amateurfilm" ;
+    fuseki:endpoint [ 
+         # SPARQL query service
+        fuseki:operation fuseki:query ; 
+        fuseki:name "sparql"
+    ] ;
+    fuseki:endpoint [ 
+         # SPARQL query service (alt name)
+        fuseki:operation fuseki:query ; 
+        fuseki:name "query" 
+    ] ;
+
+    fuseki:dataset  <#dataset> 
+    .
+
+<#dataset> rdf:type ja:MemoryDataset ;
+    ## Optional: load with data on start-up
+    ja:data <file:/fuseki/data/lod_amateurfilm_sdo_20250806_clean.nt> 
+    .

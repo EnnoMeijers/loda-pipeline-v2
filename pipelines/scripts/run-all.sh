@@ -1,0 +1,59 @@
+#!/bin/bash
+set -e
+
+# Usage: 
+# ./runall.sh runs all pipelines
+# ./runall.sh xyz only runs the xys pipeline
+
+process_dataset () {
+	local DATASET=$1
+
+    echo "Change directory to $1"
+
+    cd $1
+	
+	../scripts/start-sparql-server.sh $DATASET
+
+	# wait a short while for the server to come up - should be replace by a test!
+	echo "Wait a short while for the server to start"
+	sleep 5s 
+
+	../scripts/run-mapping.sh $DATASET
+
+	../scripts/stop-sparql-server.sh $DATASET
+
+	../scripts/convert-to-edm.sh $DATASET
+
+	../scripts/make_dataset_description.sh $DATASET
+	
+	#./upload-to-s3bucket.sh $DATASET
+
+	cd ..
+}
+
+
+# Initialize the DATASETS array
+DATASETS=()
+
+if [ $# -gt 0 ]; then
+	DATASETS=("$1")
+else
+	while IFS= read -r dir; do
+		if [ -f $dir/environment ]; then
+		   unset PRODUCTION 
+		   source $dir/environment
+		   if [ "$PRODUCTION" -eq 1 ]; then
+			  DATASETS+=("$dir")
+		   else
+		      echo "Skipping $dir, PRODUCTION variable not set"
+		   fi 
+
+		fi
+	done < <(find . -maxdepth 1 -type d ! -name "." ! -name "generic" -exec basename {} \;)
+fi
+
+# Loop through the array and print each item
+for dataset in "${DATASETS[@]}"; do
+    echo "* Processing $dataset"
+	process_dataset $dataset
+done
