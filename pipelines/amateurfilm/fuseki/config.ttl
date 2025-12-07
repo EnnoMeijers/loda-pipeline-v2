@@ -8,7 +8,7 @@ PREFIX :        <#>
      <service1>
    ) .
 
-## Updatable in-memory dataset.
+## the sparql endpoint will be available on http://localhost:3030/<dataset>/sparql
 <service1> rdf:type fuseki:Service ;
     fuseki:name   "amateurfilm" ;
     fuseki:endpoint [ 
@@ -26,6 +26,5 @@ PREFIX :        <#>
     .
 
 <#dataset> rdf:type ja:MemoryDataset ;
-    ## Optional: load with data on start-up
-    ja:data <file:/fuseki/data/lod_amateurfilm_sdo_20250806_clean.nt> 
-    .
+  ja:data "./data/lod_amateurfilm_sdo_20250806_clean.nt" ;
+  .

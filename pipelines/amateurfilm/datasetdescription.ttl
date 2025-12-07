@@ -3,19 +3,19 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
 <https://dc4eu.nl/id/datasets/> a dcat:Dataset ;
-	dcterms:title "Images of the Dutch Regional Archives of Nijmegen for Europeana"@en ;
-	dcterms:description "Images of the Dutch Regional Archives of Nijmegen for Europeana - dataset '' - converted via LODA-pipeline to the EDM datamodel."@en ;
+	dcterms:title "Amateurfilm collectie"@en ;
+	dcterms:description "Amateurfilm collectie - dataset '' - converted via LODA-pipeline to the EDM datamodel."@en ;
 	dcterms:license <http://creativecommons.org/publicdomain/zero/1.0/> ;
-	dcterms:creator <https://www.regionaalarchiefnijmegen.nl/> ;
+	dcterms:creator <https://www.beeldengeluid.nl> ;
 	dcat:distribution <https://dc4eu.nl/id/datasets//dist-nt>, <https://dc4eu.nl/id/datasets//dist-xml> ;
-	dcterms:created "2025-11-13"^^<http://www.w3.org/2001/XMLSchema#date> ;
-	dcterms:modified "2025-11-23T15:34:07Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-	dcterms:language "en" ;
+	dcterms:created "2025-12-07"^^<http://www.w3.org/2001/XMLSchema#date> ;
+	dcterms:modified "2025-12-06T16:06:05Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	dcterms:language "nl" ;
 	dcterms:publisher <https://dc4eu.nl> ;
-	dcterms:source <https://studiezaal.nijmegen.nl/AtlantisPubliek/data/dataset/LOD+Beelddocumenten> .
+	dcterms:source <http://data.beeldengeluid.nl/id/dataset/0029> .
 
-<https://www.regionaalarchiefnijmegen.nl/> a foaf:Organization ;
-	foaf:name "Regional Archives of Nijmegen"@en .
+<https://www.beeldengeluid.nl> a foaf:Organization ;
+	foaf:name "Nederlands Instituut voor Beeld en Geluid"@en .
 
 <https://dc4eu.nl> a foaf:Organization ;
 	foaf:name "DC4EU" .
@@ -23,8 +23,8 @@
 <https://dc4eu.nl/id/datasets//dist-nt> a dcat:Distribution ;
 	dcterms:description "Gzipped distribution of 66166 N-triples."@en ;
 	dcat:byteSize "1415286"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> ;
-	dcterms:created "2025-11-23T15:34:07Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-	dcterms:modified "2025-11-23T15:34:07Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	dcterms:created "2025-12-06T16:06:05Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	dcterms:modified "2025-12-06T16:06:05Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
 	dcat:accessURL <https://nde-europeana.ams3.digitaloceanspaces.com/amateurfilm.nt.gz> ;
 	dcat:downloadURL <https://nde-europeana.ams3.digitaloceanspaces.com/amateurfilm.nt.gz> ;
 	dcterms:license <http://creativecommons.org/publicdomain/zero/1.0/> ;
@@ -35,8 +35,8 @@
 <https://dc4eu.nl/id/datasets//dist-xml>  a dcat:Distribution ;
 	dcterms:description "Zipped distribution of 2985 EDM XML files."@en ;
 	dcat:byteSize "4685705"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> ;
-	dcterms:created "2025-11-23T15:34:07Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
-	dcterms:modified "2025-11-23T15:34:07Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	dcterms:created "2025-12-06T16:06:05Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	dcterms:modified "2025-12-06T16:06:05Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
 	dcat:accessURL <https://nde-europeana.ams3.digitaloceanspaces.com/amateurfilm.edmxml.zip> ;
 	dcat:downloadURL <https://nde-europeana.ams3.digitaloceanspaces.com/amateurfilm.edmxml.zip> ;
 	dcterms:license <http://creativecommons.org/publicdomain/zero/1.0/> ;

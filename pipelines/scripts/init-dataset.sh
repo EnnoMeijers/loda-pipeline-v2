@@ -13,11 +13,9 @@ echo "Creating $dataset"
 mkdir ./$dataset
 cd $dataset
 
-# install default gitignore file
-cp ../generic/gitignore .gitignore
-
 echo "Creating subdirectory for 'data'"
 mkdir data
+cat /dev/null > ./data/.gitkeep
 
 echo "Creating subdirectory for 'ld-workbench'"
 mkdir ld-workbench
@@ -27,7 +25,7 @@ mkdir fuseki
 
 # create a mointing point for the log file
 mkdir ./fuseki/logs
-touch ./fuseki/logs/log.fuseki
+touch ./fuseki/logs/fuseki_log.txt
 
 echo "Installing default query files"
 cp ../generic/iterator-stage-1.rq ./ld-workbench

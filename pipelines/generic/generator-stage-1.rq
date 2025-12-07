@@ -19,7 +19,7 @@ CONSTRUCT {
 		dcterms:temporal ?temporal ;
 		dcterms:medium ?material ;
 		dcterms:issued ?issued ;
-		edm:isPartOf ?isPartOf ;
+		dcterms:isPartOf ?isPartOf ;  # correction: should be dcterms:isPartOf
 		edm:pid ?pid .
 
 	?uri_ore a ore:Aggregation ;

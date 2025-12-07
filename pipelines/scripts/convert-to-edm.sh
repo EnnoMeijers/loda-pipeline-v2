@@ -28,4 +28,4 @@ echo "Rewrite the RDF/XML to XML that can be processed by Europeana..."
 
 docker compose run --rm europeana-tools /bin/bash -c "/app/crawler/rdf2edm.sh -input_file /opt/data/${DATASET}.rdf -output_file /opt/data/${DATASET}.zip"
 
-echo "Ready: output file ${DATASET}.zip is written to the data dir..."
+echo "Ready: output file ${DATASET}.zip is written to the main directory..."

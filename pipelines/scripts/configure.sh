@@ -60,9 +60,6 @@ if [ ! -z "$SOURCE_URL" ]; then
     exit 1 ;;
   esac
 
-  # remove orginal downloaded file
-  rm $file
-
   # TODO: support other RDF-serializations
   echo "Looking for N-triples files to proces..."
   dataFiles=(*.nt)
