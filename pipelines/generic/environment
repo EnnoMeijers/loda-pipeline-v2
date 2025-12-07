@@ -43,6 +43,7 @@ export DATASET_DESCRIPTION_CREATE_DATE=
 
 # source of the dataset
 # export DATASET_DESCRIPTION_SOURCE_DATASET="<https://studiezaal.nijmegen.nl/AtlantisPubliek/data/dataset/LOD+Beelddocumenten>" # example
+# TODO: the current setup require this variable to be a string wrapped URI, this is error prone
 export DATASET_DESCRIPTION_SOURCE_DATASET=
 
 # base location of the distribution 

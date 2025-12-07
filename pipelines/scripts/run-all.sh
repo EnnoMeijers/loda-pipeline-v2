@@ -14,10 +14,6 @@ process_dataset () {
 	
 	../scripts/start-sparql-server.sh $DATASET
 
-	# wait a short while for the server to come up - should be replace by a test!
-	echo "Wait a short while for the server to start"
-	sleep 5s 
-
 	../scripts/run-mapping.sh $DATASET
 
 	../scripts/stop-sparql-server.sh $DATASET
