@@ -1,6 +1,8 @@
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix edm: <http://www.europeana.eu/schemas/edm/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 <https://dc4eu.nl/id/datasets/$DATASETNAME> a dcat:Dataset ;
 	dcterms:title "$DATASET_DESCRIPTION_TITLE"@en ;
@@ -41,5 +43,13 @@
 	dcat:downloadURL <$DISTRIBUTION_CONTENT_XMLZIP> ;
 	dcterms:license <http://creativecommons.org/publicdomain/zero/1.0/> ;
 	dcterms:format "application/zip" ;
-	dcat:mediaType <https://www.iana.org/assignments/media-types/application/zip> ;
-	dcterms:conformsTo <http://www.europeana.eu/schemas/edm/> .
+	dcat:mediaType <http://www.iana.org/assignments/media-types/application/rdf+xml> ;
+	dcat:compressFormat <https://www.iana.org/assignments/media-types/application/zip> ;
+	dcterms:conformsTo <http://www.europeana.eu/schemas/edm/> ;
+	edm:hasTransformation <#transformation> .
+
+<#transformation> a edm:DataTransformationResource ;
+	rdf:value $QUERY_FILES ;
+    dcterms:conformsTo <https://www.w3.org/TR/sparql11-query/#construct> ;
+    edm:hasOutputFormat <http://www.europeana.eu/schemas/edm/> .
+

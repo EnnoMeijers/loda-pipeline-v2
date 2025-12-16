@@ -1,7 +1,6 @@
 PREFIX fuseki:  <http://jena.apache.org/fuseki#>
 PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX ja:      <http://jena.hpl.hp.com/2005/11/Assembler#>
-PREFIX tdb2:    <http://jena.apache.org/2016/tdb#>
 PREFIX :        <#>
 
 [] rdf:type fuseki:Server ;
@@ -11,7 +10,7 @@ PREFIX :        <#>
 
 ## the sparql endpoint will be available on http://localhost:3030/<dataset>/sparql
 <service1> rdf:type fuseki:Service ;
-    fuseki:name   "$DATASET" ;
+    fuseki:name   "ran" ;
     fuseki:endpoint [ 
          # SPARQL query service
         fuseki:operation fuseki:query ; 
@@ -23,8 +22,9 @@ PREFIX :        <#>
         fuseki:name "query" 
     ] ;
 
-    fuseki:dataset  <#dataset> .
+    fuseki:dataset  <#dataset> 
+    .
 
-<#dataset> rdf:type tdb2:DatasetTDB2 ;
-  tdb2:location "/pipelines/data/DB" .
-
+<#dataset> rdf:type ja:MemoryDataset ;
+  ja:data "./data/LOD+Beelddocumenten.nt" ;
+  .

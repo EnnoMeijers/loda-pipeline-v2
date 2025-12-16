@@ -13,7 +13,7 @@ OUTPUT_FILE="./ld-workbench/${DATASET}.nt"
 if [ -f $OUTPUT_FILE ]; then
   # mv the output file to the dataset root if the mapping was succesful
   # TODO create a shared volume in docker-compose ??
-  mv $OUTPUT_FILE ${DATASET}.nt
+  mv $OUTPUT_FILE ./data/${DATASET}.nt
 else
   echo "Error: Mapping failed, no output file"
   exit 1

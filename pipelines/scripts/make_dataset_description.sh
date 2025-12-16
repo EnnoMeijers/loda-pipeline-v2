@@ -37,6 +37,7 @@ fi
 
 echo "Creating dataset description for $DATASET..."
 
+cd data
 # make gzipped version to distribute
 gzip -c ${DATASET}-distinct.nt > ${DATASET}.nt.gz
 
@@ -52,9 +53,30 @@ export DISTRIBUTION_SIZE_NTRIPLES=$(stat -c %s "${DATASET}.nt.gz")
 export DISTRIBUTION_CONTENT_XMLZIP="${DATASET_DESCRIPTION_DISTRUTION_BASE}/${DATASET}.edmxml.zip"
 export DISTRIBUTION_SIZE_XMLZIP=$(stat -c %s "${DATASET}.zip")
 
+cd ..
+
+repository="$PIPELINES_REPO/pipeines/$DATASET/ld-workbench"
+
+queryFiles=(`docker compose run --rm tools /bin/bash -c "yq '.stages[].generator[].query' /pipelines/ld-workbench/config.yml"`)
+queryFiles+=(`docker compose run --rm tools /bin/bash -c "yq '.stages[].iterator.query' /pipelines/ld-workbench/config.yml"`)
+
+# build the list of query files used for the transformation
+queryFileStr=""
+for queryFile in "${queryFiles[@]}" ; do
+     fileStr=${queryFile/file:\/\//}
+     URL_query="$repository/$fileStr"
+     if [ -z "$queryFileStr" ]; then
+       queryFileStr="\"$URL_query\""
+     else 
+       queryFileStr="$queryFileStr,\"$URL_query\""
+     fi
+done
+
+# store the result in the QUERY_FILES variable
+export QUERY_FILES=$queryFileStr
+
 envsubst < ../generic/datasetdescription.ttl > datasetdescription.ttl
 
-docker compose run --rm europeana-tools /bin/bash -c "shacl validate --data /opt/data/datasetdescription.ttl --shapes https://raw.githubusercontent.com/netwerk-digitaal-erfgoed/dataset-register/refs/heads/main/requirements/shacl.ttl > /opt/data/validate-report-datasetdescription.txt"
+docker compose run --rm tools /bin/bash -c "shacl validate --data /pipelines/datasetdescription.ttl --shapes https://raw.githubusercontent.com/netwerk-digitaal-erfgoed/dataset-register/refs/heads/main/requirements/shacl.ttl > /pipelines/data/validate-report-datasetdescription.txt"
 
 #curl 'https://datasetregister.netwerkdigitaalerfgoed.nl/api/datasets' -H 'link: <http://www.w3.org/ns/ldp#RDFSource>; rel="type",<http://www.w3.org/ns/ldp#Resource>; rel="type"' -H 'content-type: application/ld+json' --data-binary '{"@id":"https://nde-europeana.ams3.digitaloceanspaces.com/nafotos.datasetdescription.ttl"}'
-

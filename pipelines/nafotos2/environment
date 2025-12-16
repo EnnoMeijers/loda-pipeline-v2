@@ -4,15 +4,15 @@
 export PRODUCTION=0  # change the value to 1 when the dataset is ready for automatic processing
 
 # short name for addressing the dataset
-export DATASET=nafotos1
+export DATASET=nafotos2
 
 # specify either a URL to download the dataset for this pipeline
-export SOURCE_URL=https://ennomeijers.thegood.cloud/s/LbYtdzWJ9MfReSy/download/nafotos1.zip
+export SOURCE_URL=https://ennomeijers.thegood.cloud/s/8yAWSzd4cnfGR3Z/download/nafotos2.zip
 
 # or put on or more data files in the data directory and specify the path and filename separated by a ","
 # for example: "./data/file1.nt,./data/file2.nt"
 # when the SOURCE_URL is set the SOURCE_FILES variable will be set automatically
-export SOURCE_FILES=2-10-62ntfoto.nt:2-19-123ntfoto.nt:2-20-46ntfoto.nt:2-21-008-01ntfoto.nt:2-21-284ntfoto.nt:2-24-01-01ntfoto.nt:2-24-01-02ntfoto.nt:2-24-01-03ntfoto.nt:2-24-01-04ntfoto.nt:2-24-01-05ntfoto.nt:2-24-01-06ntfoto.nt:2-24-01-07ntfoto.nt:2-24-01-08ntfoto.nt:2-24-01-09ntfoto.nt:2-24-01-13ntfoto.nt
+export SOURCE_FILES=2-24-03ntfoto.nt:2-24-04-01ntfoto.nt:2-24-04-02ntfoto.nt:2-24-04-03ntfoto.nt:2-24-05-02ntfoto.nt:2-24-06-01ntfoto.nt:2-24-06-02ntfoto.nt:2-24-09ntfoto.nt:2-24-10-01ntfoto.nt:2-24-10-02ntfoto.nt:2-24-11ntfoto.nt:2-24-14-02ntfoto.nt:2-24-15ntfoto.nt:2-24-26ntfoto.nt
 
 ### variables used to automatically create the dataset description
 
@@ -38,8 +38,10 @@ export DATASET_DESCRIPTION_CREATE_DATE="2025-08-04"
 
 # source of the dataset
 # TODO: should point to the correct download file
-export DATASET_DESCRIPTION_SOURCE_DATASET="<https://archief.nl/id/dataset/toegang/2.10.62>"
+# export DATASET_DESCRIPTION_SOURCE_DATASET="<https://studiezaal.nijmegen.nl/AtlantisPubliek/data/dataset/LOD+Beelddocumenten>" # example
+export DATASET_DESCRIPTION_SOURCE_DATASET="<https://archief.nl/id/dataset/toegang/2-24-03ntfoto>"
 
 # base location of the distribution 
 # export DATASET_DESCRIPTION_DISTRUTION_BASE="https://nde-europeana.ams3.digitaloceanspaces.com";
 export DATASET_DESCRIPTION_DISTRUTION_BASE="https://nde-europeana.ams3.digitaloceanspaces.com"
+

@@ -3,3 +3,4 @@
 *.rdf
 *.gz
 *.txt
+*/data/*

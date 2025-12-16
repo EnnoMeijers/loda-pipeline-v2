@@ -9,6 +9,7 @@
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh:      <http://www.w3.org/ns/shacl#> .
 @prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix svcs:    <http://rdfs.org/sioc/services#> .
 
 ### Property declarations ###
 # Note: some properties are mandated to be non-empty (if they are literals). These properties are
@@ -368,7 +369,10 @@
     sh:uniqueLang true ;
     sh:message    "skos:prefLabel must be a literal; only one value per language may be present." .
 
-
+:svcsHasServiceProperty
+    sh:path       svcs:has_service ;
+    sh:nodeKind   sh:IRI ;
+    sh:message    "svcs:has_service must be a reference" .
 
 # TODO in the following checks, this schema follows the documentation. But we should verify and adjust.
 # TODO check: dc:coverage in the docs can also have timespan, but we enrich only for Place.
@@ -657,7 +661,8 @@
     sh:property          :dctermsIssuedProperty ;
     sh:property          :edmIsNextInSequenceProperty ;
     sh:property          :edmRightsProperty ;
-    sh:property          :owlSameAsProperty .
+    sh:property          :owlSameAsProperty ;
+    sh:property          :svcsHasServiceProperty .
 
 # Agent
 :AgentShape
@@ -683,7 +688,8 @@
     a                    sh:NodeShape ;
     sh:targetClass       skos:Concept ;
     sh:closed            true ;
-    sh:ignoredProperties ( rdf:type ) .
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          :skosPrefLabelProperty .
 
 # Place
 :PlaceShape

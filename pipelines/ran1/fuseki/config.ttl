@@ -11,7 +11,7 @@ PREFIX :        <#>
 
 ## the sparql endpoint will be available on http://localhost:3030/<dataset>/sparql
 <service1> rdf:type fuseki:Service ;
-    fuseki:name   "$DATASET" ;
+    fuseki:name   "ran1" ;
     fuseki:endpoint [ 
          # SPARQL query service
         fuseki:operation fuseki:query ; 

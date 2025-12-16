@@ -1,0 +1,18 @@
+# Metadata for your pipeline:
+---
+name: ran1
+description: Zet de datadump van het RAN om naar EDM RDF voor publicatie op Europeana
+
+# This is optional, by default it will be stored in the data directory of the pipeline using filename 'statements.nt'
+destination: file://ran1.nt
+
+# The individual stages for your pipeline
+stages:
+  - name: "Stage 1 - Schema2EDM"
+    iterator:
+      query: file://iterator.rq
+      batchSize: 1000
+      endpoint: http://localhost:3030/ran1/sparql
+    generator:
+      - query: file://generator.rq
+        batchSize: 1000

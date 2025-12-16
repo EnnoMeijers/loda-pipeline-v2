@@ -32,8 +32,8 @@ cp ../generic/iterator-stage-1.rq ./ld-workbench
 cp ../generic/generator-stage-1.rq ./ld-workbench
 
 echo "Installing 'environment' file"
+echo "Set DATASET name to $dataset in $dataset/environoment" 
 export DATASET=$dataset
 envsubst '$DATASET' < ../generic/environment > ./environment
-echo "Set DATASET name to $dataset in $dataset/environoment" 
 
 echo "Init proces finished - to proceed set the correct variables in the 'environment' file in '$dataset'"

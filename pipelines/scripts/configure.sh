@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-
+export USER=$(id -u):$(id -g)
 if [ ! -f environment ]; then
   echo "Error: Environment file doesn't exists. Please rerun the init-pipeline script"
   exit 1
@@ -16,6 +16,15 @@ unset SOURCE_URL SOURCE_FILES
 # read the variables from the 'environment' file
 source environment
 
+echo "Creating the Fuseki config file"
+
+# create a local copy of the fuseki config file
+envsubst < ../generic/fuseki-config.ttl > ./fuseki/config.ttl
+
+# update LD-Workbench configuration based on the environment variables
+envsubst < ../generic/ld-workbench-config.yml > ld-workbench/config.yml
+
+# see if a data download an initialization is necessary
 if [ -z "$SOURCE_URL" ] && [ -z "$SOURCE_FILES" ] ; then
    echo "Error: Please set SOURCE_URL or SOURCE_FILES variable in `environment` file"
    exit 1
@@ -47,69 +56,63 @@ if [ ! -z "$SOURCE_URL" ]; then
     *.tgz)
       echo "Extracting files..." 
       tar xfz $file ;;
-    *.gz)
-       echo "Extracting files..."   
-      gunzip $file ;;
     *.zip)
       echo "Extracting files..."
       unzip $file ;;
-    *.nt)
-      echo "no extra processing needed" ;;
+    *.nt | *.nt.gz | *.rdf | *.rdf.gz | *.ttl | *.ttl.gz | *.owl | *.owl.gz | *.nquads | *.nquads.gz)
+      echo "Known file type, no extra processing needed!" ;;
     *)
-    echo "unsupported file format, please prepare download files manualy" 
+    echo "Unsupported file format, please prepare download files manualy" 
     exit 1 ;;
   esac
+  cd ..
+  echo "Download and optional extraction performed, data files ready for processing."
 
-  # TODO: support other RDF-serializations
-  echo "Looking for N-triples files to proces..."
-  dataFiles=(*.nt)
+fi
+
+# proces the RDF data in ./data if the SOURCE_FILES var is blank 
+if [ -z "$SOURCE_FILES" ]; then
+  
+  cd data
+
+  echo "Looking for input files files to proces..."
+
+  # Create a fuseki TDB2 database from all the downloaded RDF fules
+  shopt -s nullglob  # only read matches with existing files
+  dataFiles=(*.rdf *.rdf.gz *.ttl *.ttl.gz *.owl *.owl.gz *.nt *.nt.gz *.nquads *.nquads.gz)
+  filelist=""
+  for datafile in "${dataFiles[@]}"
+  do
+     fullname="/pipelines/data/$datafile"
+     filelist="$filelist $fullname"
+  done
+  echo "Creating a Fuseki database with $filelist..."
+
+  # remove previously created database
+  if [ -d "./DB" ]; then
+    rm -rf ./DB
+  fi
+
+  # create the TDB2 database in the data dir with the name 'DB'
+  docker compose run --rm tools /bin/bash -c "tdb2.tdbloader --loc DB $filelist"
 
   # Convert the array to a string with a delimiter
   dataFilesString=$(IFS=:; echo "${dataFiles[*]}")
+  export SOURCE_FILES_DOWNLOADED=$dataFilesString
 
   cd ..
-
-  export SOURCE_FILES_DOWNLOADED=$dataFilesString
+  
+  # store the filelist in the SOURCE_FILES variable
   envsubst < environment > tmp.env 
   mv tmp.env environment
-  echo "Download succeeded, SOURCE_FILES variable set!"
 
-fi 
+  echo "Fuseki database created and SOURCE_FILES variable set!"
 
-source environment
-
-# copy the data file to fuseki map to make it available for docker
-# TODO: create a shared volume through docker-compose
-echo "Copy the data files to the Fuseki environment"
-cp ./data/*.nt ./fuseki
-
-echo "Creating the Fuseki config file"
-
-# create a local copy of the fuseki config file
-envsubst < ../generic/fuseki-config.ttl > ./fuseki/config.ttl
-
-## expand the fuseki config file with additional lines to link the data files 
-echo "<#dataset> rdf:type ja:MemoryDataset ;" >> ./fuseki/config.ttl
-
-# read the SOURCE_FILES variable into an array
-# loop over the array to create a config line for each file 
-IFS=: read -r -a dataFiles <<< "$SOURCE_FILES"
-
-# get length of an array
-arraylength=${#dataFiles[@]}
-
-# use for loop to read all values and indexes
-for (( i=0; i<${arraylength}; i++ ));
-do
-  echo "  ja:data \"./data/${dataFiles[$i]}\" ;" >> ./fuseki/config.ttl
-done
-
-# close the config file with a "." to terminate the triples
-echo "  ." >> ./fuseki/config.ttl
-
-# update LD-Workbench configuration based on the environment variables
-envsubst < ../generic/ld-workbench-config.yml > ld-workbench/config.yml
+fi
 
 echo "Configuration done!"
+
+
+
 
 
