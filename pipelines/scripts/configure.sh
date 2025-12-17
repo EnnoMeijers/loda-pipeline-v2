@@ -6,10 +6,6 @@ if [ ! -f environment ]; then
   exit 1
 fi
 
-# test value: https://data.beeldengeluid.nl/files/amateurfilm/lod_amateurfilm_sdo_20250806_clean.nt
-# read the environment variables
-# at least SOURCE_URL or SOURCE_FILE should be set
-
 # clear old values
 unset SOURCE_URL SOURCE_FILES
 
@@ -25,10 +21,13 @@ envsubst < ../generic/fuseki-config.ttl > ./fuseki/config.ttl
 envsubst < ../generic/ld-workbench-config.yml > ld-workbench/config.yml
 
 # see if a data download an initialization is necessary
+# at least SOURCE_URL or SOURCE_FILE should be set
 if [ -z "$SOURCE_URL" ] && [ -z "$SOURCE_FILES" ] ; then
    echo "Error: Please set SOURCE_URL or SOURCE_FILES variable in `environment` file"
    exit 1
 fi
+
+newDownload=false
 
 # if $SOURCE_URL is set a file will be downloaded 
 if [ ! -z "$SOURCE_URL" ]; then
@@ -67,11 +66,12 @@ if [ ! -z "$SOURCE_URL" ]; then
   esac
   cd ..
   echo "Download and optional extraction performed, data files ready for processing."
+  newDownload=true
 
 fi
 
 # proces the RDF data in ./data if the SOURCE_FILES var is blank 
-if [ ! -z "$SOURCE_FILES" ]; then
+if [ ! -z "$SOURCE_FILES" ] | [ $newDownload ]; then
   
   cd data
 

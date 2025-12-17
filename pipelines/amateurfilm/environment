@@ -1,16 +1,22 @@
 ## general configuration for the dataset
 
 # status for this dataset setup
-export PRODUCTION=0  # change the value to 1 when the dataset is ready for automatic processing
+export PRODUCTION=1  # change the value to 1 when the dataset is ready for automatic processing
 
 # short name for addressing the dataset
 export DATASET=amateurfilm
+
+# URL of the base repository where config files are stored
+# this is used for referencing the query files in the dataset description
+# see scripts/make_dataset_description.sh for more details
+# for example: "https://github.com/EnnoMeijers/loda-pipeline-v2/tree/main/pipelines"
+export PIPELINES_REPO="https://github.com/EnnoMeijers/loda-pipeline-v2/tree/main/pipelines"
 
 # specify either a URL to download the dataset for this pipeline
 # example: "https://data.beeldengeluid.nl/files/amateurfilm/lod_amateurfilm_sdo_20250806_clean.nt"
 # or https://ams3.digitaloceanspaces.com/nde-europeana/nafotos.tar.gz
 # https://ennomeijers.thegood.cloud/s/LbYtdzWJ9MfReSy/download/nafotos1.zip (nafotos1: 2-10-62 t/m 2-24-01-13)
-# https://ennomeijers.thegood.cloud/s/8yAWSzd4cnfGR3Z/download/nafotos2.zip (nafotos2)
+# https://ennomeijers.thegood.cloud/s/8yAWSzd4cnfGR3Z/download/nafotos2.zip (nafotos2: 2-24-03 t/m 2-24-26)
 # https://ennomeijers.thegood.cloud/s/Jy7gAJDpMPfoGY3/download/nafotos3.zip (nafotos3)
 export SOURCE_URL="https://data.beeldengeluid.nl/files/amateurfilm/lod_amateurfilm_sdo_20250806_clean.nt"
 
@@ -41,10 +47,12 @@ export DATASET_DESCRIPTION_CREATOR_NAME="Nederlands Instituut voor Beeld en Gelu
 # export DATASET_DESCRIPTION_CREATE_DATE="2025-11-13" # example
 export DATASET_DESCRIPTION_CREATE_DATE="2025-12-07"
 
-# URI for the source of the dataset
+# source of the dataset
 # export DATASET_DESCRIPTION_SOURCE_DATASET="<https://studiezaal.nijmegen.nl/AtlantisPubliek/data/dataset/LOD+Beelddocumenten>" # example
+# TODO: the current setup require this variable to be a string wrapped URI, this is error prone
 export DATASET_DESCRIPTION_SOURCE_DATASET="<http://data.beeldengeluid.nl/id/dataset/0029>"
 
 # base location of the distribution 
 # export DATASET_DESCRIPTION_DISTRUTION_BASE="https://nde-europeana.ams3.digitaloceanspaces.com";
 export DATASET_DESCRIPTION_DISTRUTION_BASE="https://nde-europeana.ams3.digitaloceanspaces.com"
+

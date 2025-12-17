@@ -1,7 +1,7 @@
 ## general configuration for the dataset
 
 # status for this dataset setup
-export PRODUCTION=1  # change the value to 1 when the dataset is ready for automatic processing
+export PRODUCTION=0  # change the value to 1 when the dataset is ready for automatic processing
 
 # short name for addressing the dataset
 export DATASET=ran

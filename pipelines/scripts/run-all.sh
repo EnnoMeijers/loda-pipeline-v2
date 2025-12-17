@@ -1,9 +1,11 @@
 #!/bin/bash
 set -e
 
-# Usage: 
-# ./runall.sh runs all pipelines
-# ./runall.sh xyz only runs the xys pipeline
+# Usage:
+# set de current working director to 'pipelines'
+# 
+# './scripts/run-all.sh' runs all pipelines that have the PRODUCTION var set to 1
+# './runall.sh 'example' only runs the 'example' pipeline
 
 process_dataset () {
 	local DATASET=$1
@@ -12,11 +14,11 @@ process_dataset () {
 
     cd $1
 
-	#../scripts/start-sparql-server.sh $DATASET
+	../scripts/start-sparql-server.sh $DATASET
 
-	#../scripts/run-mapping.sh $DATASET
+	../scripts/run-mapping.sh $DATASET
 
-	#../scripts/stop-sparql-server.sh $DATASET
+	../scripts/stop-sparql-server.sh $DATASET
 
 	../scripts/convert-to-edm.sh $DATASET
 
