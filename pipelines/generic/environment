@@ -9,8 +9,7 @@ export DATASET=${DATASET}
 # URL of the base repository where config files are stored
 # this is used for referencing the query files in the dataset description
 # see scripts/make_dataset_description.sh for more details
-# for example: "https://github.com/EnnoMeijers/loda-pipeline-v2/tree/main/pipelines"
-export PIPELINES_REPO=
+export PIPELINES_REPO="https://raw.githubusercontent.com/EnnoMeijers/loda-pipeline-v2/refs/heads/main/pipelines"
 
 # specify either a URL to download the dataset for this pipeline
 # example: "https://data.beeldengeluid.nl/files/amateurfilm/lod_amateurfilm_sdo_20250806_clean.nt"
