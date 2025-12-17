@@ -37,7 +37,7 @@ if [ ! -z "$SOURCE_URL" ]; then
   echo "Dataset name is: $DATASET"
   echo "Source URL is: $SOURCE_URL"
   echo "Starting download..."
-  if ! wget -nc -o download-log.txt $SOURCE_URL; then
+  if ! wget -o download-log.txt $SOURCE_URL; then
      echo ""
   fi
 
@@ -71,7 +71,7 @@ if [ ! -z "$SOURCE_URL" ]; then
 fi
 
 # proces the RDF data in ./data if the SOURCE_FILES var is blank 
-if [ -z "$SOURCE_FILES" ]; then
+if [ ! -z "$SOURCE_FILES" ]; then
   
   cd data
 
@@ -94,11 +94,11 @@ if [ -z "$SOURCE_FILES" ]; then
   fi
 
   # create the TDB2 database in the data dir with the name 'DB'
-  docker compose run --rm tools /bin/bash -c "tdb2.tdbloader --loc DB $filelist"
+  docker compose run --rm tools /bin/bash -c "tdb2.tdbloader --loc /pipelines/data/DB $filelist"
 
   # Convert the array to a string with a delimiter
   dataFilesString=$(IFS=:; echo "${dataFiles[*]}")
-  export SOURCE_FILES_DOWNLOADED=$dataFilesString
+  export SOURCE_FILES_DOWNLOADED="$dataFilesString"
 
   cd ..
   

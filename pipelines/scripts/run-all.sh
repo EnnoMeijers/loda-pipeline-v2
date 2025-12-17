@@ -11,12 +11,12 @@ process_dataset () {
     echo "Change directory to $1"
 
     cd $1
-	
-	../scripts/start-sparql-server.sh $DATASET
 
-	../scripts/run-mapping.sh $DATASET
+	#../scripts/start-sparql-server.sh $DATASET
 
-	../scripts/stop-sparql-server.sh $DATASET
+	#../scripts/run-mapping.sh $DATASET
+
+	#../scripts/stop-sparql-server.sh $DATASET
 
 	../scripts/convert-to-edm.sh $DATASET
 
@@ -39,7 +39,13 @@ else
 		   unset PRODUCTION 
 		   source $dir/environment
 		   if [ "$PRODUCTION" -eq 1 ]; then
-			  DATASETS+=("$dir")
+
+		      # test if a Fuseki database is created
+			  if [ ! -d "$dir/data/DB" ]; then
+			     echo "No database available for '$dir', run 'configure.sh' first!"
+			  else
+			     DATASETS+=("$dir")
+			  fi
 		   else
 		      echo "Skipping $dir, PRODUCTION variable not set"
 		   fi 

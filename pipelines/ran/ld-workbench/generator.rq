@@ -26,7 +26,7 @@ CONSTRUCT {
 	?uri_ore a ore:Aggregation ;
 		edm:aggregatedCHO $this ;
 		edm:isShownAt ?isShownAt ;
-		edm:hasView ?isShownBy ;
+		edm:isShownBy ?isShownBy ;
 		edm:rights ?license ;
 		edm:dataProvider ?dataProvider ;
 		edm:provider ?provider ;

@@ -1,5 +1,6 @@
-# LDWorkbench generates multiple triples which is inefficient and might lead to problems
+# LDWorkbench sometimes generates multiple triples which is inefficient and might lead to problems
 # within the processing pipeline at Europeana. This query removes the duplicates
+# This query also removes multiple values for edm:isShownBy which is not allowed according to the Europeana rules
 PREFIX edm:     <http://www.europeana.eu/schemas/edm/>
 
 construct {?s ?p ?o}

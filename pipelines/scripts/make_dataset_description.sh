@@ -75,8 +75,8 @@ done
 # store the result in the QUERY_FILES variable
 export QUERY_FILES=$queryFileStr
 
-envsubst < ../generic/datasetdescription.ttl > datasetdescription.ttl
+envsubst < ../generic/datasetdescription.ttl > data/datasetdescription.ttl
 
-docker compose run --rm tools /bin/bash -c "shacl validate --data /pipelines/datasetdescription.ttl --shapes https://raw.githubusercontent.com/netwerk-digitaal-erfgoed/dataset-register/refs/heads/main/requirements/shacl.ttl > /pipelines/data/validate-report-datasetdescription.txt"
+docker compose run --rm tools /bin/bash -c "shacl validate --data /pipelines/data/datasetdescription.ttl --shapes https://raw.githubusercontent.com/netwerk-digitaal-erfgoed/dataset-register/refs/heads/main/requirements/shacl.ttl > /pipelines/data/validate-report-datasetdescription.txt"
 
 #curl 'https://datasetregister.netwerkdigitaalerfgoed.nl/api/datasets' -H 'link: <http://www.w3.org/ns/ldp#RDFSource>; rel="type",<http://www.w3.org/ns/ldp#Resource>; rel="type"' -H 'content-type: application/ld+json' --data-binary '{"@id":"https://nde-europeana.ams3.digitaloceanspaces.com/nafotos.datasetdescription.ttl"}'
