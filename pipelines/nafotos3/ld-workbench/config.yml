@@ -7,8 +7,8 @@ description: Zet de nafotos3 datadump om naar EDM RDF voor publicatie op Europea
 destination: file://nafotos3.nt
 
 # The individual stages for your pipeline
-# The individual stages for your pipeline
 stages:
+
   - name: "Stage 1 - edm:ProvidedCHO's"
     iterator:
       query: file://iterator-stage-1-2-3.rq

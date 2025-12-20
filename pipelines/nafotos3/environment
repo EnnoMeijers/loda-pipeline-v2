@@ -14,10 +14,10 @@ export PIPELINES_REPO="https://raw.githubusercontent.com/EnnoMeijers/loda-pipeli
 # specify either a URL to download the dataset for this pipeline
 export SOURCE_URL="https://nde-europeana.ams3.digitaloceanspaces.com/na-fotos-7_000spaondntfoto_2.zip"
 
-# or put on or more data files in the data directory and specify the path and filename separated by a ","
-# for example: "./data/file1.nt,./data/file2.nt"
+# or put on or more data files in the data directory and specify the path and filename separated by a ":"
+# for example: "file1.nt:file2.nt"
 # when the SOURCE_URL is set the SOURCE_FILES variable will be set automatically
-export SOURCE_FILES=2-24-03ntfoto.nt:2-24-04-01ntfoto.nt:2-24-04-02ntfoto.nt:2-24-04-03ntfoto.nt:2-24-05-02ntfoto.nt:2-24-06-01ntfoto.nt:2-24-06-02ntfoto.nt:2-24-09ntfoto.nt:2-24-10-01ntfoto.nt:2-24-10-02ntfoto.nt:2-24-11ntfoto.nt:2-24-14-02ntfoto.nt:2-24-15ntfoto.nt:2-24-26ntfoto.nt
+export SOURCE_FILES=7-000spaondntfoto.2.nt
 
 ### variables used to automatically create the dataset description
 
