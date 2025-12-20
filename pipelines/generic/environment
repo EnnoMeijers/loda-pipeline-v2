@@ -12,11 +12,6 @@ export DATASET=${DATASET}
 export PIPELINES_REPO="https://raw.githubusercontent.com/EnnoMeijers/loda-pipeline-v2/refs/heads/main/pipelines"
 
 # specify either a URL to download the dataset for this pipeline
-# example: "https://data.beeldengeluid.nl/files/amateurfilm/lod_amateurfilm_sdo_20250806_clean.nt"
-# or https://ams3.digitaloceanspaces.com/nde-europeana/nafotos.tar.gz
-# https://ennomeijers.thegood.cloud/s/LbYtdzWJ9MfReSy/download/nafotos1.zip (nafotos1: 2-10-62 t/m 2-24-01-13)
-# https://ennomeijers.thegood.cloud/s/8yAWSzd4cnfGR3Z/download/nafotos2.zip (nafotos2: 2-24-03 t/m 2-24-26)
-# https://ennomeijers.thegood.cloud/s/Jy7gAJDpMPfoGY3/download/nafotos3.zip (nafotos3)
 export SOURCE_URL=
 
 # or put on or more data files in the data directory and specify the path and filename separated by a ","

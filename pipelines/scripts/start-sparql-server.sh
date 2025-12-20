@@ -19,6 +19,9 @@ docker compose up --detach fuseki
 echo "Waiting for the sparql server to be up and running..."
 # wait untill the server is up and running
 ( tail -f -n0 fuseki/log.txt & ) | grep -q "No static content location"
-
+# echo "Waiting for Fuseki to finish starting up..."
+# until $(curl --output /dev/null --silent --head --fail http://localhost:3030); do
+#  sleep 1s
+# done
 echo -n "`date`: "
 echo "Sparql server available!"

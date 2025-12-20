@@ -7,7 +7,7 @@ export PRODUCTION=0  # change the value to 1 when the dataset is ready for autom
 export DATASET=nafotos1
 
 # specify either a URL to download the dataset for this pipeline
-export SOURCE_URL=https://ennomeijers.thegood.cloud/s/LbYtdzWJ9MfReSy/download/nafotos1.zip
+export SOURCE_URL="https://nde-europeana.ams3.digitaloceanspaces.com/na-fotos-2_10_62-2_24_01_13.zip"
 
 # or put on or more data files in the data directory and specify the path and filename separated by a ","
 # for example: "./data/file1.nt,./data/file2.nt"

@@ -29,7 +29,6 @@ process_dataset () {
 	cd ..
 }
 
-
 # Initialize the DATASETS array
 DATASETS=()
 
@@ -41,7 +40,6 @@ else
 		   unset PRODUCTION 
 		   source $dir/environment
 		   if [ "$PRODUCTION" -eq 1 ]; then
-
 		      # test if a Fuseki database is created
 			  if [ ! -d "$dir/data/DB" ]; then
 			     echo "No database available for '$dir', run 'configure.sh' first!"
