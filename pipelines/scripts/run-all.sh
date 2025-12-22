@@ -44,14 +44,17 @@ else
 			  if [ ! -d "$dir/data/DB" ]; then
 			     echo "No database available for '$dir', run 'configure.sh' first!"
 			  else
+			     echo "Adding $dir to the list"
 			     DATASETS+=("$dir")
 			  fi
 		   else
-		      echo "Skipping $dir, PRODUCTION variable not set"
-		   fi 
+		      echo "Skipping $dir (PRODUCTION variable not set)"
+		   fi
+		else 
+		  echo "Ignoring $dir (no 'environment' file found)" 
 
 		fi
-	done < <(find . -maxdepth 1 -type d ! -name "." ! -name "generic" -exec basename {} \;)
+	done < <(find . -maxdepth 1 -type d ! -name "." ! -name "generic" ! -name ".s3" ! -name "scripts" -exec basename {} \; | sort -n)
 fi
 
 # Loop through the array and print each item

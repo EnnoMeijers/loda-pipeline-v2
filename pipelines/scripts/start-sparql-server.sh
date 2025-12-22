@@ -14,14 +14,17 @@ cat /dev/null > fuseki/log.txt
 USER=$(id -u):$(id -g)
 
 # TIP: remove --detach option for debugging
-docker compose up --detach fuseki
+docker compose up --detach fuseki >> fuseki/log.txt
 
 echo "Waiting for the sparql server to be up and running..."
-# wait untill the server is up and running
-( tail -f -n0 fuseki/log.txt & ) | grep -q "No static content location"
-# echo "Waiting for Fuseki to finish starting up..."
-# until $(curl --output /dev/null --silent --head --fail http://localhost:3030); do
-#  sleep 1s
-# done
+
+end=$((SECONDS+10))
+until $(curl --output /dev/null --silent --fail --data "query=select*{?s%20?p%20?o}LIMIT%2010" http://localhost:3030/$DATASET/sparql); do
+  sleep 3s
+  if [ $SECONDS -gt $end ]; then
+    echo "Failed to bring up Fuseki, please see log files for possible reasons" >> fuseki/log.txt
+    exit 1
+  fi
+done
 echo -n "`date`: "
 echo "Sparql server available!"

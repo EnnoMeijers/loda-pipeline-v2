@@ -58,7 +58,7 @@ if [ ! -z "$SOURCE_URL" ]; then
     *.zip)
       echo "Extracting files..."
       unzip $file ;;
-    *.nt | *.nt.gz | *.rdf | *.rdf.gz | *.ttl | *.ttl.gz | *.owl | *.owl.gz | *.nquads | *.nquads.gz)
+    *.nt | *.nt.gz | *.rdf | *.rdf.gz | *.ttl | *.ttl.gz | *.owl | *.owl.gz | *.nq | *.nquads | *.nquads.gz)
       echo "Known file type, no extra processing needed!" ;;
     *)
     echo "Unsupported file format, please prepare download files manualy" 
@@ -79,7 +79,7 @@ if [ ! -z "$SOURCE_FILES" ] | [ $newDownload ]; then
 
   # Create a fuseki TDB2 database from all the downloaded RDF fules
   shopt -s nullglob  # only read matches with existing files
-  dataFiles=(*.rdf *.rdf.gz *.ttl *.ttl.gz *.owl *.owl.gz *.nt *.nt.gz *.nquads *.nquads.gz)
+  dataFiles=(*.rdf *.rdf.gz *.ttl *.ttl.gz *.owl *.owl.gz *.nt *.nt.gz *.nq *.nquads *.nquads.gz)
   filelist=""
   for datafile in "${dataFiles[@]}"
   do
