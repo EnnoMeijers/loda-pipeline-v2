@@ -17,8 +17,18 @@ echo "Creating the Fuseki config file"
 # create a local copy of the fuseki config file
 envsubst < ../generic/fuseki-config.ttl > ./fuseki/config.ttl
 
-# update LD-Workbench configuration based on the environment variables
+echo "Creating the LD-Workbench config files"
+
+# write the LD-Workbench configuration based on the environment variables
 envsubst < ../generic/ld-workbench-config.yml > ld-workbench/config.yml
+
+# write the generator query based on the environment variables
+
+# to prevent replace of the special variable $this
+export this="\$this"
+envsubst < ../generic/edm-generator.rq > ld-workbench/edm-generator.rq
+
+cp ../generic/iterator.rq ./ld-workbench
 
 # see if a data download an initialization is necessary
 # at least SOURCE_URL or SOURCE_FILE should be set

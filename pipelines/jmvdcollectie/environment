@@ -4,7 +4,13 @@
 export PRODUCTION=0  # change the value to 1 when the dataset is ready for automatic processing
 
 # short name for addressing the dataset
-export DATASET=kranenburgh
+export DATASET=jmvdcollectie
+
+# full name for the dataprovider
+export DATAPROVIDER="Jan Menze van Diepen Collectie"
+
+# default language
+export DEFAULT_LANGUAGE="nl"
 
 # URL of the base repository where config files are stored
 # this is used for referencing the query files in the dataset description
@@ -12,7 +18,7 @@ export DATASET=kranenburgh
 export PIPELINES_REPO="https://raw.githubusercontent.com/EnnoMeijers/loda-pipeline-v2/refs/heads/main/pipelines"
 
 # specify either a URL to download the dataset for this pipeline
-export SOURCE_URL="https://datasets.ldmax.nl/dataset/38e98411-baf2-43b5-b0a5-7a8891e0ba68/resource/2aeca239-8d02-4b9d-a107-95adf8d6cad6/download/dataset.nq"
+export SOURCE_URL="https://datasets.ldmax.nl/dataset/34a9f08a-8d12-49e8-a8eb-c31e80ede1e3/resource/f94f3576-49db-4715-ad5f-9d243e722e83/download/dataset.nq"
 
 # or put on or more data files in the data directory and specify the path and filename separated by a ","
 # for example: "./data/file1.nt,./data/file2.nt"
@@ -23,30 +29,30 @@ export SOURCE_FILES=dataset.nq
 
 # language of the dataset description 
 # export DATASET_DESCRIPTION_LANGUAGE="en"  # example
-export DATASET_DESCRIPTION_LANGUAGE="nl"
+export DATASET_DESCRIPTION_LANGUAGE=
 
 # title of the dataset
 # export DATASET_DESCRIPTION_TITLE="Images of the Dutch Regional Archives of Nijmegen for Europeana"  # example
-export DATASET_DESCRIPTION_TITLE="Objecten van het Museum Kranenburgh"
+export DATASET_DESCRIPTION_TITLE=
 
 # URI for the organization that created the dataset
 # export DATASET_DESCRIPTION_CREATOR_URI="https://www.regionaalarchiefnijmegen.nl/"  # example
-export DATASET_DESCRIPTION_CREATOR_URI="https://n2t.net/ark:/67039/organisation"
+export DATASET_DESCRIPTION_CREATOR_URI=
 
 # name of the organization that created the dataset
 # export DATASET_DESCRIPTION_CREATOR_NAME="Regional Archives of Nijmegen" # example
-export DATASET_DESCRIPTION_CREATOR_NAME="Museum Kranenburgh"
+export DATASET_DESCRIPTION_CREATOR_NAME=
 
 # creation date of the dataset
 # export DATASET_DESCRIPTION_CREATE_DATE="2025-11-13" # example
-export DATASET_DESCRIPTION_CREATE_DATE="2025-09-30"
+export DATASET_DESCRIPTION_CREATE_DATE=
 
 # source of the dataset
 # export DATASET_DESCRIPTION_SOURCE_DATASET="<https://studiezaal.nijmegen.nl/AtlantisPubliek/data/dataset/LOD+Beelddocumenten>" # example
 # TODO: the current setup require this variable to be a string wrapped URI, this is error prone
-export DATASET_DESCRIPTION_SOURCE_DATASET="https://www.ldmax.nl/datasets/q4350196/rdf"
+export DATASET_DESCRIPTION_SOURCE_DATASET=
 
 # base location of the distribution 
 # export DATASET_DESCRIPTION_DISTRUTION_BASE="https://nde-europeana.ams3.digitaloceanspaces.com";
-export DATASET_DESCRIPTION_DISTRUTION_BASE="https://nde-europeana.ams3.digitaloceanspaces.com"
+export DATASET_DESCRIPTION_DISTRUTION_BASE=
 

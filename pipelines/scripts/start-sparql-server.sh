@@ -1,8 +1,13 @@
 #!/bin/bash
 set -e
 
-# pass the dataset name as the first argument
-export DATASET="${1}"
+# Initialize the DATASETS array
+unset DATASET
+
+source environment
+if [ -z $DATASET ]; then
+  echo "Please swith to a dataset directory" 
+fi
 
 echo -n "`date`: "
 echo "Starting the SPARQL server with for ${DATASET}..."

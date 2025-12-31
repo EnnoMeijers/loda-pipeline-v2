@@ -10,9 +10,9 @@ destination: file://$DATASET.nt
 stages:
   - name: "Stage 1 - Schema2EDM"
     iterator:
-      query: file://iterator-stage-1.rq
+      query: file://iterator.rq
       batchSize: 1000
       endpoint: http://localhost:3030/${DATASET}/sparql
     generator:
-      - query: file://generator-stage-1.rq
+      - query: file://edm-generator.rq
         batchSize: 1000

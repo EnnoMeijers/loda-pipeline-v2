@@ -6,6 +6,12 @@ export PRODUCTION=0  # change the value to 1 when the dataset is ready for autom
 # short name for addressing the dataset
 export DATASET=${DATASET}
 
+# full name for the dataprovider
+export DATAPROVIDER=
+
+# default language
+export DEFAULT_LANGUAGE="nl"
+
 # URL of the base repository where config files are stored
 # this is used for referencing the query files in the dataset description
 # see scripts/make_dataset_description.sh for more details

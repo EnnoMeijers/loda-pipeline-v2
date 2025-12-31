@@ -5,10 +5,21 @@ PREFIX edm:     <http://www.europeana.eu/schemas/edm/>
 
 construct {?s ?p ?o}
 where {
+
+    # edm:isShownBy can only have one value so select a random one when multiple values are present
     {
-      select distinct ?s ?p (SAMPLE(?oRaw) as ?o) {
-        ?s ?p ?oRaw
+      select distinct ?s ?p (SAMPLE(?_o) as ?o) {
+        ?s ?p ?_o
         FILTER(?p=edm:isShownBy) 
+      }
+      GROUP BY ?s ?p   
+    }
+    UNION
+    # edm:object can only have one value so select a random one when multiple values are present
+    {
+      select distinct ?s ?p (SAMPLE(?_o) as ?o) {
+        ?s ?p ?_o
+        FILTER(?p=edm:object) 
       }
       GROUP BY ?s ?p   
     }
@@ -16,7 +27,7 @@ where {
     {
       select distinct ?s ?p ?o { 
         ?s ?p ?o 
-        FILTER( ?p != edm:isShownBy )
+        FILTER( ?p != edm:isShownBy && ?p != edm:object )
       }
     }
 }

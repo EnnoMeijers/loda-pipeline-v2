@@ -27,10 +27,6 @@ mkdir fuseki
 mkdir ./fuseki/logs
 touch ./fuseki/logs/fuseki_log.txt
 
-echo "Installing default query files"
-cp ../generic/iterator-stage-1.rq ./ld-workbench
-cp ../generic/generator-stage-1.rq ./ld-workbench
-
 echo "Installing 'environment' file"
 echo "Set DATASET name to $dataset in $dataset/environoment" 
 export DATASET=$dataset
